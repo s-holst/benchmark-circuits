@@ -1,5 +1,7 @@
 { pkgs      ? import <nixpkgs> {}
 , librelane ? import ./support/librelane.nix { inherit pkgs; }
+, circuit   ? "b01"
+, clock_period ? "3"
 }:
 
 let
@@ -20,18 +22,19 @@ pkgs.stdenv.mkDerivation {
   dontConfigure = true;
 
   buildPhase = ''
-    mkdir b01
-    cat > b01/config.yaml << EOF
-DESIGN_NAME: b01
-VHDL_FILES: [ $src/i99t/b01/b01.vhd ]
+    mkdir ${circuit}
+    cat > ${circuit}/config.yaml << EOF
+DESIGN_NAME: ${circuit}
+VHDL_FILES: [ $src/i99t/${circuit}/${circuit}.vhd ]
 CLOCK_PORT: clock
-CLOCK_PERIOD: 10
+CLOCK_PERIOD: ${clock_period}
+GHDL_ARGUMENTS: [ -fsynopsys ]
 EOF
-    librelane --flow VHDLClassic --manual-pdk --pdk-root ${sky130-pdk} --run-tag run b01/config.yaml
+    librelane --flow VHDLClassic --manual-pdk --pdk-root ${sky130-pdk} --run-tag run ${circuit}/config.yaml
   '';
 
   installPhase = ''
-    mkdir -p $out/b01
-    cp -r b01/runs/run/final/. $out/b01/
+    mkdir -p $out/${circuit}
+    cp -r ${circuit}/runs/run/final/. $out/${circuit}/
   '';
 }
