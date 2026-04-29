@@ -1,8 +1,9 @@
-{ pkgs ? import <nixpkgs> {} }:
+{ pkgs      ? import <nixpkgs> {}
+, librelane ? import ./support/librelane.nix { inherit pkgs; }
+}:
 
 let
   sky130-pdk = import ./support/sky130-pdk.nix { inherit pkgs; };
-  librelane  = import ./support/librelane.nix  { inherit pkgs; };
 in
 
 pkgs.stdenv.mkDerivation {
