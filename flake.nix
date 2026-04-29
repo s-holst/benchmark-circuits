@@ -17,7 +17,7 @@
           librelane-pkg = librelane.packages.${system}.default;
 
           circuits = {
-            b01 = "4";
+            b01 = "5";
             # b02: too small
             b03 = "3";
             b04 = "3";
@@ -31,6 +31,13 @@
             b12 = "4";
             b13 = "3";
             b14 = "10";
+            b15 = "10";
+            b17 = "10";
+            # b18 = "10";
+            # b19 = "10";
+            b20 = "15";
+            b21 = "15";
+            b22 = "15";
           };
 
           mkCircuit = circuit: clock_period:
