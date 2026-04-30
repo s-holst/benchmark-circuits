@@ -22,3 +22,4 @@ to generate a `result` directory with the requested benchmark data.
 | polito-itc99-bench | All synthesized ITC'99 benchmarks in bench format ([copy of non-optimized original](https://github.com/cad-polito-it/I99T)) |
 | polito-itc99-sky130.{b01, b03, b04, b05, b06, b07, b09, b10, b11, b12, b13, b14} | Results from SKY130 flow (netlist, layout, parasitics, ...) for specific circuit based on [RTL designs written in VHDL](https://github.com/cad-polito-it/I99T) |
 polito-itc99-sky130 | Design data for all above circuits combined |
+picorv32-sky130 | A [picorv32](https://github.com/YosysHQ/picorv32/tree/v1.0) core synthesized with SKY130 flow. |

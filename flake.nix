@@ -33,8 +33,8 @@
             b14 = "10";
             b15 = "10";
             b17 = "10";
-            # b18 = "10";
-            # b19 = "10";
+            b18 = "20";
+            b19 = "20";
             b20 = "15";
             b21 = "15";
             b22 = "15";
@@ -48,11 +48,12 @@
 
           circuitPkgs = builtins.mapAttrs mkCircuit circuits;
         in {
-          polito-itc99-bench  = import ./polito-itc99-bench.nix { inherit pkgs; };
           polito-itc99-sky130 = pkgs.symlinkJoin {
             name  = "polito-itc99-sky130";
             paths = builtins.attrValues circuitPkgs;
           } // circuitPkgs;
+          polito-itc99-bench  = import ./polito-itc99-bench.nix { inherit pkgs; };
+          picorv32-sky130 = import ./picorv32-sky130.nix { inherit pkgs; };
           default = self.packages.${system}.polito-itc99-bench;
         }
       );
