@@ -54,6 +54,7 @@
           } // circuitPkgs;
           polito-itc99-bench  = import ./polito-itc99-bench.nix { inherit pkgs; };
           picorv32-sky130 = import ./picorv32-sky130.nix { inherit pkgs; librelane = librelane-pkg; };
+          jpeg_core-sky130 = import ./jpeg_core-sky130.nix { inherit pkgs; librelane = librelane-pkg; };
           default = self.packages.${system}.polito-itc99-bench;
         }
       );
