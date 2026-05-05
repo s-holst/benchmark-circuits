@@ -47,16 +47,24 @@
             };
 
           circuitPkgs = builtins.mapAttrs mkCircuit circuits;
+
+          individualPkgs = builtins.listToAttrs (
+            builtins.map (name: {
+              name  = "polito-itc99-${name}-sky130";
+              value = circuitPkgs.${name};
+            }) (builtins.attrNames circuitPkgs)
+          );
         in {
-          polito-itc99-sky130 = pkgs.symlinkJoin {
-            name  = "polito-itc99-sky130";
+          polito-itc99-all-sky130 = pkgs.symlinkJoin {
+            name  = "polito-itc99-all-sky130";
             paths = builtins.attrValues circuitPkgs;
-          } // circuitPkgs;
-          polito-itc99-bench  = import ./polito-itc99-bench.nix { inherit pkgs; };
+            meta.description = "All ITC'99 benchmarks implemented in Skywater 130nm PDK.";
+          };
+          polito-itc99-all-bench  = import ./polito-itc99-bench.nix { inherit pkgs; };
           picorv32-sky130 = import ./picorv32-sky130.nix { inherit pkgs; librelane = librelane-pkg; };
           jpeg_core-sky130 = import ./jpeg_core-sky130.nix { inherit pkgs; librelane = librelane-pkg; };
-          default = self.packages.${system}.polito-itc99-bench;
-        }
+          default = self.packages.${system}.polito-itc99-all-bench;
+        } // individualPkgs
       );
     };
 }

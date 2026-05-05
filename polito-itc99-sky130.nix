@@ -9,9 +9,8 @@ let
 in
 
 pkgs.stdenv.mkDerivation {
-  pname = "polito-itc99-sky130";
-  version = "2.0";
-
+  name = "polito-itc99-${circuit}-sky130";
+  meta.description = "ITC'99 benchmark ${circuit} implemented in Skywater 130nm PDK.";
   src = pkgs.fetchzip {
     url = "https://github.com/cad-polito-it/I99T/archive/refs/tags/v2.tar.gz";
     sha256 = "0x0gal45vj0i17wgdnn27jf3xmhr1kkdwrsi04p5qhjz6hm7c22y";
