@@ -10,7 +10,7 @@ in
 
 pkgs.stdenv.mkDerivation {
   name = "jpeg_core-sky130";
-  meta.description = "A JPEG decoder (https://github.com/ultraembedded/core_jpeg) implemented in Skywater 130nm PDK.";
+  meta.description = "A [JPEG decoder](https://github.com/ultraembedded/core_jpeg) implemented in Skywater 130nm PDK.";
   src = pkgs.fetchzip {
     url = "https://github.com/ultraembedded/core_jpeg/archive/bb03cce45d0b7459d395486e9e1db3de1b416bd2.zip";
     sha256 = "US2V/5gE8Mz6zUn3zaxIoVanMrs2OY05GFmm/APiiMs=";

@@ -61,9 +61,19 @@
             meta.description = "All ITC'99 benchmarks implemented in Skywater 130nm PDK.";
           };
           polito-itc99-all-bench  = import ./polito-itc99-bench.nix { inherit pkgs; };
+          default = self.packages.${system}.polito-itc99-all-bench;
+
           picorv32-sky130 = import ./picorv32-sky130.nix { inherit pkgs; librelane = librelane-pkg; };
           jpeg_core-sky130 = import ./jpeg_core-sky130.nix { inherit pkgs; librelane = librelane-pkg; };
-          default = self.packages.${system}.polito-itc99-all-bench;
+
+          iwls-faraday-all-gsclib = import ./iwls-gsclib.nix { inherit pkgs; subset = "faraday"; };
+          iwls-gaisler-all-gsclib = import ./iwls-gsclib.nix { inherit pkgs; subset = "gaisler"; };
+          iwls-iscas-all-gsclib = import ./iwls-gsclib.nix { inherit pkgs; subset = "iscas"; };
+          iwls-itc99-all-gsclib = import ./iwls-gsclib.nix { inherit pkgs; subset = "itc99"; };
+          iwls-opencores-all-gsclib = import ./iwls-gsclib.nix { inherit pkgs; subset = "opencores"; };
+          epfl-arithmetic-all = import ./epfl-verilog.nix { inherit pkgs; subset = "arithmetic"; };
+          epfl-control-all = import ./epfl-verilog.nix { inherit pkgs; subset = "random_control"; };
+          epfl-mtm-all = import ./epfl-verilog.nix { inherit pkgs; subset = "mtm"; };
         } // individualPkgs
       );
     };

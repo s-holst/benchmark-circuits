@@ -10,7 +10,7 @@ in
 
 pkgs.stdenv.mkDerivation {
   name = "picorv32-sky130";
-  meta.description = "A tiny RV32 core (https://github.com/YosysHQ/picorv32) implemented in Skywater 130nm PDK.";
+  meta.description = "A [PicoRV32](https://github.com/YosysHQ/picorv32) core implemented in Skywater 130nm PDK.";
   src = pkgs.fetchzip {
     url = "https://github.com/YosysHQ/picorv32/archive/refs/tags/v1.0.tar.gz";
     sha256 = "22rJ2IxtRL7wcA38u5WdMeEbc5s4aSw6Do/9tNYAu8g=";
