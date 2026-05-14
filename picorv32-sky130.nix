@@ -12,8 +12,8 @@ pkgs.stdenv.mkDerivation {
   name = "picorv32-sky130";
   meta.description = "A [PicoRV32](https://github.com/YosysHQ/picorv32) core implemented in Skywater 130nm PDK.";
   src = pkgs.fetchzip {
-    url = "https://github.com/YosysHQ/picorv32/archive/refs/tags/v1.0.tar.gz";
-    sha256 = "22rJ2IxtRL7wcA38u5WdMeEbc5s4aSw6Do/9tNYAu8g=";
+    url = "https://github.com/s-holst/picorv32/archive/ea66cd27f1c84f26bdcf75ea6f9de442a3fd78e8.zip";
+    sha256 = "GvKa6o8O8rE1qsbsjky3ZT6I4blUIMZNb0UWyv/gqyw=";
   };
 
   nativeBuildInputs = [ librelane ];
