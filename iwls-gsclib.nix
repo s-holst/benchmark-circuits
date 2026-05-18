@@ -12,7 +12,10 @@ pkgs.stdenv.mkDerivation {
 
   dontBuild = true;
 
-  installPhase = ''
+  installPhase = if subset == "gsclib" then ''
+    mkdir -p $out
+    cp $src/library/* $out/
+  '' else ''
     mkdir -p $out
     find $src/${subset}/netlist -name "*.v" -exec cp {} $out/ \;
   '';

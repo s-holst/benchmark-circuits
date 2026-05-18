@@ -71,6 +71,7 @@
           iwls-iscas-all-gsclib = import ./iwls-gsclib.nix { inherit pkgs; subset = "iscas"; };
           iwls-itc99-all-gsclib = import ./iwls-gsclib.nix { inherit pkgs; subset = "itc99"; };
           iwls-opencores-all-gsclib = import ./iwls-gsclib.nix { inherit pkgs; subset = "opencores"; };
+          iwls-gsclib = import ./iwls-gsclib.nix { inherit pkgs; subset = "gsclib"; };
           epfl-arithmetic-all = import ./epfl-verilog.nix { inherit pkgs; subset = "arithmetic"; };
           epfl-control-all = import ./epfl-verilog.nix { inherit pkgs; subset = "random_control"; };
           epfl-mtm-all = import ./epfl-verilog.nix { inherit pkgs; subset = "mtm"; };
