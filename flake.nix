@@ -75,6 +75,7 @@
           epfl-arithmetic-all = import ./epfl-verilog.nix { inherit pkgs; subset = "arithmetic"; };
           epfl-control-all = import ./epfl-verilog.nix { inherit pkgs; subset = "random_control"; };
           epfl-mtm-all = import ./epfl-verilog.nix { inherit pkgs; subset = "mtm"; };
+          sky130-pdk = import ./support/sky130-pdk.nix { inherit pkgs; };
         } // individualPkgs
       );
     };
