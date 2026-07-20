@@ -1,6 +1,7 @@
 { pkgs      ? import <nixpkgs> {}
 , librelane ? import ./support/librelane.nix { inherit pkgs; }
 , circuit   ? "b01"
+, clock_port ? "clock"
 , clock_period ? "3"
 }:
 
@@ -25,7 +26,7 @@ pkgs.stdenv.mkDerivation {
     cat > ${circuit}/config.yaml << EOF
 DESIGN_NAME: ${circuit}
 VHDL_FILES: [ $src/i99t/${circuit}/${circuit}.vhd ]
-CLOCK_PORT: clock
+CLOCK_PORT: ${clock_port}
 CLOCK_PERIOD: ${clock_period}
 GHDL_ARGUMENTS: [ -fsynopsys ]
 EOF

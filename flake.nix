@@ -16,35 +16,37 @@
           pkgs          = nixpkgs.legacyPackages.${system};
           librelane-pkg = librelane.packages.${system}.default;
 
+          # Each circuit maps to its clock configuration: the clock period and
+          # the name of the clock port on the design.
           circuits = {
-            b01 = "5";
+            b01 = { clock_period = "5";  clock_port = "clock"; };
             # b02: too small
-            b03 = "3";
-            b04 = "3";
-            b05 = "3";
-            b06 = "4";
-            b07 = "3";
+            b03 = { clock_period = "3";  clock_port = "clock"; };
+            b04 = { clock_period = "3";  clock_port = "CLOCK"; };
+            b05 = { clock_period = "3";  clock_port = "CLOCK"; };
+            b06 = { clock_period = "4";  clock_port = "clock"; };
+            b07 = { clock_period = "3";  clock_port = "clock"; };
             # b08.vhd:69:40:error: unhandled dyn operation: IIR_PREDEFINED_TF_ARRAY_NOT
-            b09 = "3";
-            b10 = "3";
-            b11 = "4";
-            b12 = "4";
-            b13 = "3";
-            b14 = "10";
-            b15 = "10";
-            b17 = "10";
-            b18 = "20";
-            b19 = "20";
-            b20 = "15";
-            b21 = "15";
-            b22 = "15";
+            b09 = { clock_period = "3";  clock_port = "clock"; };
+            b10 = { clock_period = "3";  clock_port = "clock"; };
+            b11 = { clock_period = "4";  clock_port = "clock"; };
+            b12 = { clock_period = "4";  clock_port = "clock"; };
+            b13 = { clock_period = "3";  clock_port = "clock"; };
+            b14 = { clock_period = "10"; clock_port = "clock"; };
+            b15 = { clock_period = "10"; clock_port = "CLOCK"; };
+            b17 = { clock_period = "10"; clock_port = "CLOCK"; };
+            b18 = { clock_period = "20"; clock_port = "clock"; };
+            b19 = { clock_period = "20"; clock_port = "clock"; };
+            b20 = { clock_period = "15"; clock_port = "clock"; };
+            b21 = { clock_period = "15"; clock_port = "clock"; };
+            b22 = { clock_period = "15"; clock_port = "clock"; };
           };
 
-          mkCircuit = circuit: clock_period:
-            import ./polito-itc99-sky130.nix {
-              inherit pkgs circuit clock_period;
+          mkCircuit = circuit: cfg:
+            import ./polito-itc99-sky130.nix ({
+              inherit pkgs circuit;
               librelane = librelane-pkg;
-            };
+            } // cfg);
 
           circuitPkgs = builtins.mapAttrs mkCircuit circuits;
 
